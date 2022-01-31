@@ -33,12 +33,13 @@ def set_up_notification(chat_id: int, event: dict):
     if delayed_time[0] < 0:
         delayed_time[0] += 24
     delayed_time = str(delayed_time[0]) + ":" + str(delayed_time[1])
-    create_job(event_id=event["event_id"],
-               chat_id=chat_id,
-               text=text_to_send,
-               wday=(event["event_wday"].upper()[0:3]),
-               time=delayed_time
-               )
+    create_job(
+        event_id=event["event_id"],
+        chat_id=chat_id,
+        text=text_to_send,
+        wday=event["event_wday"].upper()[:3],
+        time=delayed_time,
+    )
 
 
 def delete_notification(event_id: int):

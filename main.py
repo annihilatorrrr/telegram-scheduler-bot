@@ -171,7 +171,10 @@ async def create_event(call: types.CallbackQuery, state: FSMContext):
     user_data["records"] += 1
     user_data["events"].append({})
     user_data["events"][user_data["records"] - 1] = event
-    user_data["events"][user_data["records"] - 1]["event_id"] = hash(call.from_user.id + int(event["event_time"][0:2]))
+    user_data["events"][user_data["records"] - 1]["event_id"] = hash(
+        call.from_user.id + int(event["event_time"][:2])
+    )
+
     set_up_notification(chat_id=call.message.chat.id,
                         event=user_data["events"][user_data["records"] - 1]
                         )
